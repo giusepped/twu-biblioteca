@@ -23,8 +23,7 @@ public class WelcomeMessageTest {
         welcomeMessage.printMessage();
         assertEquals(
                 "Welcome to Bangalore Public Library, we are here to help you\n",
-                outputStream.toString());
-
-
+                outputStream.toString()
+        );
     }
 }
