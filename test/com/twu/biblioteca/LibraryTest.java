@@ -17,8 +17,8 @@ public class LibraryTest {
     @Before
     public void setUpLibrary(){
         library = new Library();
-        Book b1 = new Book("The Aeneid");
-        Book b2 = new Book("The House of the Spirits");
+        Book b1 = new Book("A Game of Thrones", "George R. R. Martin", 1996);
+        Book b2 = new Book("The House of the Spirits", "Isabel Allende", 1982);
         library.addBooks(b1, b2);
     }
 
@@ -30,8 +30,9 @@ public class LibraryTest {
         library.list();
         assertEquals(
                 "Here are the available books\n" +
-                "The Aeneid\n" +
-                "The House of the Spirits\n",
+                "Title   |   Author  |   Year of publication\n" +
+                "A Game of Thrones | George R. R. Martin | 1996\n" +
+                "The House of the Spirits | Isabel Allende | 1982\n",
                 outputStream.toString()
         );
     }

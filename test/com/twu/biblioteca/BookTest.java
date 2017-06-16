@@ -13,15 +13,7 @@ public class BookTest {
 
     @Before
     public void createBook(){
-        book = new Book("The Aeneid");
-    }
-
-    @Test
-    public void canGetTitle(){
-        assertEquals(
-                "The Aeneid",
-                book.getTitle()
-        );
+        book = new Book("The House of the Spirits", "Isabel Allende", 1982);
     }
 
     @Test

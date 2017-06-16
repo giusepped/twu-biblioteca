@@ -21,6 +21,7 @@ public class Library {
 
     public void list(){
         System.out.println("Here are the available books");
+        System.out.println("Title   |   Author  |   Year of publication");
         for (Book b : books){
             System.out.println(b.getDetails());
         }

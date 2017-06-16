@@ -10,8 +10,8 @@ public class BibliotecaApp {
     public void run(){
         WelcomeMessage message = new WelcomeMessage();
         Library library = new Library();
-        Book b1 = new Book("The Aeneid");
-        Book b2 = new Book("The House of the Spirits");
+        Book b1 = new Book("A Game of Thrones", "George R. R. Martin", 1996);
+        Book b2 = new Book("The House of the Spirits", "Isabel Allende", 1982);
         library.addBooks(b1, b2);
 
         message.printMessage();
