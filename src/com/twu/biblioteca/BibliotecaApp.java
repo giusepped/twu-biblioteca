@@ -37,9 +37,11 @@ public class BibliotecaApp {
     private MainMenu setUpMenu(Library library){
         ListOption listOption = new ListOption();
         QuitOption quitOption = new QuitOption();
+        CheckOutOption checkOutOption = new CheckOutOption();
         ArrayList<MenuOption> options = new ArrayList<MenuOption>();
         options.add(listOption);
         options.add(quitOption);
+        options.add(checkOutOption);
         return new MainMenu(library, options);
     }
 }

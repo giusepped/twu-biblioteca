@@ -23,4 +23,12 @@ public class BookTest {
                 book.getDetails()
         );
     }
+
+    @Test
+    public void canGetTitle(){
+        assertEquals(
+                "The House of the Spirits",
+                book.getTitle()
+        );
+    }
 }

@@ -3,7 +3,9 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
@@ -34,6 +36,42 @@ public class LibraryTest {
                 "Here are the available books\n" +
                 "Title   |   Author  |   Year of publication\n" +
                 "A Game of Thrones | George R. R. Martin | 1996\n" +
+                "The House of the Spirits | Isabel Allende | 1982\n",
+                outputStream.toString()
+        );
+    }
+
+    @Test
+    public void canChekoutBook(){
+        outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        String input = "The House of the Spirits";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        library.checkOut();
+        library.list();
+        assertEquals(
+                "Please enter the title of the book\n" +
+                "Here are the available books\n" +
+                "Title   |   Author  |   Year of publication\n" +
+                "A Game of Thrones | George R. R. Martin | 1996\n",
+                outputStream.toString()
+        );
+    }
+
+    @Test
+    public void canStoreCheckedoutBooks(){
+        outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        String input = "The House of the Spirits";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        library.checkOut();
+        library.listCheckedOut();
+        assertEquals(
+                "Please enter the title of the book\n" +
                 "The House of the Spirits | Isabel Allende | 1982\n",
                 outputStream.toString()
         );
