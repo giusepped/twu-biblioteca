@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
+import java.util.jar.Pack200;
 
 /**
  * Created by giuseppedesantis on 16/06/2017.
@@ -23,10 +24,27 @@ public class MainMenu {
     }
 
     public void chooseOption(String userInput){
-        for(MenuOption option : options){
-            if(userInput.equals(option.getCommand())){
-                option.run(library);
+        if(isValidOption(userInput)){
+            System.out.println("Invalid option!");
+//            chooseOption(userInput);
+        }else{
+            for(MenuOption option : options){
+                if(userInput.equals(option.getCommand())){
+                    option.run(library);
+                }
             }
         }
+    }
+
+    private boolean isValidOption(String userInput){
+        return !validOptions().contains(userInput);
+    }
+
+    private ArrayList<String> validOptions(){
+        ArrayList<String> validOptions = new ArrayList<String>();
+        for(MenuOption option : options){
+            validOptions.add(option.getCommand());
+        }
+        return validOptions;
     }
 }

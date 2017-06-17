@@ -16,13 +16,14 @@ public class BibliotecaApp {
         MainMenu menu = setUpMenu(library);
 
         message.printMessage();
-        menu.showOptions();
 
-        Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
+        while(true){
+            menu.showOptions();
+            Scanner scanner = new Scanner(System.in);
+            String userInput = scanner.nextLine();
 
-        menu.chooseOption(userInput);
-
+            menu.chooseOption(userInput);
+        }
     }
 
     private Library setUpLibrary(){
@@ -35,8 +36,10 @@ public class BibliotecaApp {
 
     private MainMenu setUpMenu(Library library){
         ListOption listOption = new ListOption();
+        QuitOption quitOption = new QuitOption();
         ArrayList<MenuOption> options = new ArrayList<MenuOption>();
         options.add(listOption);
+        options.add(quitOption);
         return new MainMenu(library, options);
     }
 }

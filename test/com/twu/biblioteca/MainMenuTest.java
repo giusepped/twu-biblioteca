@@ -2,12 +2,12 @@ package com.twu.biblioteca;
 
 import org.junit.Before;
 import org.junit.Test;
-import sun.applet.Main;
 
-import static org.junit.Assert.assertEquals;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 /**
@@ -26,6 +26,7 @@ public class MainMenuTest {
         ArrayList<MenuOption> options = new ArrayList<MenuOption>();
         listOption = mock(ListOption.class);
         when(listOption.getCommand()).thenReturn("L");
+        when(listOption.name()).thenReturn("(L)ist books");
         options.add(listOption);
         menu = new MainMenu(library, options);
     }
@@ -47,5 +48,17 @@ public class MainMenuTest {
     public void canChooseOption(){
         menu.chooseOption("L");
         verify(listOption, times(1)).run(library);
+    }
+
+    @Test
+    public void cannotChooseInvalidOption(){
+        outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        menu.chooseOption("banana");
+        assertEquals(
+                "Invalid option!\n",
+                outputStream.toString()
+        );
     }
 }

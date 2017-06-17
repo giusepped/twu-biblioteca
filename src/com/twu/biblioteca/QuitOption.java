@@ -1,22 +1,22 @@
 package com.twu.biblioteca;
 
 /**
- * Created by giuseppedesantis on 16/06/2017.
+ * Created by giuseppesmac on 17/06/17.
  */
-public class ListOption implements MenuOption{
+public class QuitOption implements MenuOption{
 
     @Override
     public String name() {
-        return "(L)ist books";
+        return "(Q)uit";
     }
 
     @Override
     public String getCommand() {
-        return "L";
+        return "Q";
     }
 
     @Override
     public void run(Library library) {
-        library.list();
+        System.exit(0);
     }
 }

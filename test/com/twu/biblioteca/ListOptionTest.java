@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 /**
@@ -14,6 +15,22 @@ public class ListOptionTest {
     @Before
     public void setUpListOption(){
         listOption = new ListOption();
+    }
+
+    @Test
+    public void canReturnName(){
+        assertEquals(
+                "(L)ist books",
+                listOption.name()
+        );
+    }
+
+    @Test
+    public void canReturnCommand(){
+        assertEquals(
+                "L",
+                listOption.getCommand()
+        );
     }
 
     @Test

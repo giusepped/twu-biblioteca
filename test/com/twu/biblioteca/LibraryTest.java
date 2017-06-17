@@ -2,9 +2,11 @@ package com.twu.biblioteca;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by giuseppedesantis on 16/06/2017.
