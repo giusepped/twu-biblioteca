@@ -19,7 +19,7 @@ public class BookTest {
     @Test
     public void canGetDetails(){
         assertEquals(
-                "The Aeneid",
+                "The House of the Spirits | Isabel Allende | 1982",
                 book.getDetails()
         );
     }
