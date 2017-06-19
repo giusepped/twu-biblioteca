@@ -14,7 +14,12 @@ public class UserTest {
 
     @Before
     public void setUpUser(){
-        user = new User("123-4567", "banana");
+        user = new User(
+                "123-4567",
+                "banana",
+                "giuseppe",
+                "giuseppe@banana.com",
+                "123456789");
     }
 
     @Test
@@ -47,6 +52,16 @@ public class UserTest {
                         "123-9076",
                         "banana"
                 )
+        );
+    }
+
+    @Test
+    public void canGetDetails(){
+        assertEquals(
+                "name: giuseppe\n" +
+                        "email: giuseppe@banana.com\n" +
+                        "number: 123456789\n",
+                user.getDetails()
         );
     }
 }
