@@ -20,7 +20,7 @@ public class CheckInOptionTest {
     @Test
     public void canReturnName(){
         assertEquals(
-                "(R)eturn book",
+                "(R)eturn item",
                 checkInOption.name()
         );
     }

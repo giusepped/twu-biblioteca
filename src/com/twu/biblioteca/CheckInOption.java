@@ -6,7 +6,7 @@ package com.twu.biblioteca;
 public class CheckInOption implements MenuOption {
     @Override
     public String name() {
-        return "(R)eturn book";
+        return "(R)eturn item";
     }
 
     @Override

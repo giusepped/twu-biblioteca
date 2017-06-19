@@ -76,8 +76,8 @@ public class LibraryTest {
         System.setIn(in);
         library.checkOut();
         assertEquals(
-                "Please enter the title of the book\n" +
-                "Thank you! Enjoy the book\n",
+                "Please enter the title of the item you want to borrow\n" +
+                "Thank you! Enjoy the item\n",
                 outputStream.toString()
         );
     }
@@ -92,8 +92,8 @@ public class LibraryTest {
         System.setIn(in);
         library.checkOut();
         assertEquals(
-                "Please enter the title of the book\n" +
-                "That book is not available\n",
+                "Please enter the title of the item you want to borrow\n" +
+                "That item is not available\n",
                 outputStream.toString()
         );
     }
@@ -109,8 +109,8 @@ public class LibraryTest {
         library.checkOut();
         library.listCheckedOut();
         assertEquals(
-                "Please enter the title of the book\n" +
-                "Thank you! Enjoy the book\n" +
+                "Please enter the title of the item you want to borrow\n" +
+                "Thank you! Enjoy the item\n" +
                 "The House of the Spirits | Isabel Allende | 1982\n",
                 outputStream.toString()
         );
@@ -130,10 +130,10 @@ public class LibraryTest {
         library.checkIn();
         library.listBooks();
         assertEquals(
-                "Please enter the title of the book\n" +
-                "Thank you! Enjoy the book\n" +
-                "Please enter the title of the book\n" +
-                "Thank you for returning the book\n" +
+                "Please enter the title of the item you want to borrow\n" +
+                "Thank you! Enjoy the item\n" +
+                "Please enter the title of the item you want to borrow\n" +
+                "Thank you for returning the item\n" +
                 "Here are the available books\n" +
                 "Title   |   Author  |   Year of publication\n" +
                 "A Game of Thrones | George R. R. Martin | 1996\n" +
@@ -152,8 +152,8 @@ public class LibraryTest {
         System.setIn(in);
         library.checkIn();
         assertEquals(
-                "Please enter the title of the book\n" +
-                "That is not a valid book to return\n",
+                "Please enter the title of the item you want to borrow\n" +
+                "That is not a valid item to return\n",
                 outputStream.toString()
         );
     }

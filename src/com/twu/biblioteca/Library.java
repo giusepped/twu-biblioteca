@@ -40,21 +40,21 @@ public class Library {
     public void checkOut(){
         String title = getTitle();
         if(isValidCheckOutRequest(title)){
-            System.out.println("Thank you! Enjoy the book");
+            System.out.println("Thank you! Enjoy the item");
             removeFromLibrary(title);
         }
         else{
-            System.out.println("That book is not available");
+            System.out.println("That item is not available");
         }
     }
 
     public void checkIn(){
         String title = getTitle();
         if(isValidCheckInRequest(title)){
-            System.out.println("Thank you for returning the book");
+            System.out.println("Thank you for returning the item");
             returnToLibrary(title);
         }else{
-            System.out.println("That is not a valid book to return");
+            System.out.println("That is not a valid item to return");
         }
     }
 
@@ -66,7 +66,7 @@ public class Library {
     }
 
     private String getTitle(){
-        System.out.println("Please enter the title of the book");
+        System.out.println("Please enter the title of the item you want to borrow");
         Scanner scanner = new Scanner(System.in);
         String title = scanner.nextLine();
         return title;

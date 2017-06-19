@@ -20,7 +20,7 @@ public class CheckOutOptionTest {
     @Test
     public void canReturnName(){
         assertEquals(
-                "(C)heck out book",
+                "(C)heck out item",
                 checkOutOption.name()
         );
     }
