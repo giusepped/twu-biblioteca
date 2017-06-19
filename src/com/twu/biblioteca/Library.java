@@ -31,11 +31,17 @@ public class Library {
 
     public void checkOut(){
         String title = getTitle();
-        for (Book b : new ArrayList<Book>(books)){
-            if(b.getTitle().equals(title)){
-                books.remove(b);
-                checkedOutBooks.add(b);
+        if(isValidRequest(title)){
+            System.out.println("Thank you! Enjoy the book");
+            for (Book b : new ArrayList<Book>(books)){
+                if(b.getTitle().equals(title)){
+                    books.remove(b);
+                    checkedOutBooks.add(b);
+                }
             }
+        }
+        else{
+            System.out.println("That book is not available");
         }
     }
 
@@ -50,5 +56,13 @@ public class Library {
         Scanner scanner = new Scanner(System.in);
         String title = scanner.nextLine();
         return title;
+    }
+
+    private boolean isValidRequest(String title){
+        ArrayList<String> titles = new ArrayList<String>();
+        for (Book b : books){
+            titles.add(b.getTitle());
+        }
+        return titles.contains(title);
     }
 }

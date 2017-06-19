@@ -50,12 +50,25 @@ public class LibraryTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         library.checkOut();
-        library.list();
         assertEquals(
                 "Please enter the title of the book\n" +
-                "Here are the available books\n" +
-                "Title   |   Author  |   Year of publication\n" +
-                "A Game of Thrones | George R. R. Martin | 1996\n",
+                "Thank you! Enjoy the book\n",
+                outputStream.toString()
+        );
+    }
+
+    @Test
+    public void cannotCheckoutInvalid(){
+        outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        String input = "banana";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        library.checkOut();
+        assertEquals(
+                "Please enter the title of the book\n" +
+                "That book is not available\n",
                 outputStream.toString()
         );
     }
