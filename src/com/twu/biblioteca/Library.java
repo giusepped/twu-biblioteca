@@ -31,19 +31,25 @@ public class Library {
 
     public void checkOut(){
         String title = getTitle();
-        if(isValidRequest(title)){
+        if(isValidCheckOutRequest(title)){
             System.out.println("Thank you! Enjoy the book");
-            for (Book b : new ArrayList<Book>(books)){
-                if(b.getTitle().equals(title)){
-                    books.remove(b);
-                    checkedOutBooks.add(b);
-                }
-            }
+            removeFromLibrary(title);
         }
         else{
             System.out.println("That book is not available");
         }
     }
+
+    public void checkIn(){
+        String title = getTitle();
+        if(isValidCheckInRequest(title)){
+            System.out.println("Thank you for returning the book");
+            returnToLibrary(title);
+        }else{
+            System.out.println("That is not a valid book to return");
+        }
+    }
+
 
     public void listCheckedOut(){
         for (Book b : checkedOutBooks){
@@ -58,11 +64,37 @@ public class Library {
         return title;
     }
 
-    private boolean isValidRequest(String title){
+    private boolean isValidCheckOutRequest(String title){
         ArrayList<String> titles = new ArrayList<String>();
         for (Book b : books){
             titles.add(b.getTitle());
         }
         return titles.contains(title);
+    }
+
+    private boolean isValidCheckInRequest(String title){
+        ArrayList<String> titles = new ArrayList<String>();
+        for (Book b : checkedOutBooks){
+            titles.add(b.getTitle());
+        }
+        return titles.contains(title);
+    }
+
+    private void removeFromLibrary(String title) {
+        for (Book b : new ArrayList<Book>(books)){
+            if(b.getTitle().equals(title)){
+                books.remove(b);
+                checkedOutBooks.add(b);
+            }
+        }
+    }
+
+    private void returnToLibrary(String title) {
+        for (Book b : new ArrayList<Book>(checkedOutBooks)){
+            if(b.getTitle().equals(title)){
+                checkedOutBooks.remove(b);
+                books.add(b);
+            }
+        }
     }
 }

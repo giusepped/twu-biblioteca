@@ -85,7 +85,50 @@ public class LibraryTest {
         library.listCheckedOut();
         assertEquals(
                 "Please enter the title of the book\n" +
+                "Thank you! Enjoy the book\n" +
                 "The House of the Spirits | Isabel Allende | 1982\n",
+                outputStream.toString()
+        );
+    }
+
+    @Test
+    public void canReturnCheckedOutBook(){
+        outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        String input = "The House of the Spirits";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        library.checkOut();
+        in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        library.checkIn();
+        library.list();
+        assertEquals(
+                "Please enter the title of the book\n" +
+                "Thank you! Enjoy the book\n" +
+                "Please enter the title of the book\n" +
+                "Thank you for returning the book\n" +
+                "Here are the available books\n" +
+                "Title   |   Author  |   Year of publication\n" +
+                "A Game of Thrones | George R. R. Martin | 1996\n" +
+                "The House of the Spirits | Isabel Allende | 1982\n",
+                outputStream.toString()
+        );
+    }
+
+    @Test
+    public void cannotReturnInvalidBook(){
+        outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        String input = "Bananas";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        library.checkIn();
+        assertEquals(
+                "Please enter the title of the book\n" +
+                "That is not a valid book to return\n",
                 outputStream.toString()
         );
     }
