@@ -16,7 +16,7 @@ public class MainMenu {
     }
 
     public void showOptions(){
-        System.out.println("Please choose an option (use the first letter):");
+        System.out.println("Please choose an option (use the letter in parenthesis):");
         for(MenuOption option : options){
             System.out.println(option.name());
         }

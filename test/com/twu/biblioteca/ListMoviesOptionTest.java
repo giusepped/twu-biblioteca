@@ -9,34 +9,34 @@ import static org.mockito.Mockito.*;
 /**
  * Created by giuseppedesantis on 16/06/2017.
  */
-public class ListOptionTest {
-    private ListOption listOption;
+public class ListMoviesOptionTest {
+    private ListMoviesOption listMoviesOption;
 
     @Before
     public void setUpListOption(){
-        listOption = new ListOption();
+        listMoviesOption = new ListMoviesOption();
     }
 
     @Test
     public void canReturnName(){
         assertEquals(
-                "(L)ist books",
-                listOption.name()
+                "List (M)ovies",
+                listMoviesOption.name()
         );
     }
 
     @Test
     public void canReturnCommand(){
         assertEquals(
-                "L",
-                listOption.getCommand()
+                "M",
+                listMoviesOption.getCommand()
         );
     }
 
     @Test
     public void canRun(){
         Library library = mock(Library.class);
-        listOption.run(library);
-        verify(library, times(1)).list();
+        listMoviesOption.run(library);
+        verify(library, times(1)).listMovies();
     }
 }

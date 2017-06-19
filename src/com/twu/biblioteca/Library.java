@@ -8,24 +8,32 @@ import java.util.Scanner;
  */
 public class Library {
 
-    private ArrayList<Book> books;
-    private ArrayList<Book> checkedOutBooks = new ArrayList<Book>();
+    private ArrayList<LibraryItem> items;
+    private ArrayList<LibraryItem> checkedOutItems = new ArrayList<LibraryItem>();
 
     public Library(){
-        this.books = new ArrayList<Book>();
+        this.items = new ArrayList<LibraryItem>();
     }
 
-    public void addBooks(Book... booksToAdd){
-        for(Book b : booksToAdd){
-            books.add(b);
+    public void addItems(LibraryItem... libraryItemsToAdd){
+        for(LibraryItem item : libraryItemsToAdd){
+            items.add(item);
         }
     }
 
-    public void list(){
+    public void listBooks(){
         System.out.println("Here are the available books");
         System.out.println("Title   |   Author  |   Year of publication");
-        for (Book b : books){
-            System.out.println(b.getDetails());
+        for (LibraryItem item : books()){
+            System.out.println(item.getDetails());
+        }
+    }
+
+    public void listMovies(){
+        System.out.println("Here are the available movies");
+        System.out.println("Title   |   Director   |   Rating   |   Year of publication");
+        for (LibraryItem item : movies()){
+            System.out.println(item.getDetails());
         }
     }
 
@@ -52,8 +60,8 @@ public class Library {
 
 
     public void listCheckedOut(){
-        for (Book b : checkedOutBooks){
-            System.out.println(b.getDetails());
+        for (LibraryItem item : checkedOutItems){
+            System.out.println(item.getDetails());
         }
     }
 
@@ -66,35 +74,55 @@ public class Library {
 
     private boolean isValidCheckOutRequest(String title){
         ArrayList<String> titles = new ArrayList<String>();
-        for (Book b : books){
-            titles.add(b.getTitle());
+        for (LibraryItem item : items){
+            titles.add(item.getTitle());
         }
         return titles.contains(title);
     }
 
     private boolean isValidCheckInRequest(String title){
         ArrayList<String> titles = new ArrayList<String>();
-        for (Book b : checkedOutBooks){
-            titles.add(b.getTitle());
+        for (LibraryItem item : checkedOutItems){
+            titles.add(item.getTitle());
         }
         return titles.contains(title);
     }
 
     private void removeFromLibrary(String title) {
-        for (Book b : new ArrayList<Book>(books)){
-            if(b.getTitle().equals(title)){
-                books.remove(b);
-                checkedOutBooks.add(b);
+        for (LibraryItem item : new ArrayList<LibraryItem>(items)){
+            if(item.getTitle().equals(title)){
+                items.remove(item);
+                checkedOutItems.add(item);
             }
         }
     }
 
     private void returnToLibrary(String title) {
-        for (Book b : new ArrayList<Book>(checkedOutBooks)){
-            if(b.getTitle().equals(title)){
-                checkedOutBooks.remove(b);
-                books.add(b);
+        for (LibraryItem item : new ArrayList<LibraryItem>(checkedOutItems)){
+            if(item.getTitle().equals(title)){
+                checkedOutItems.remove(item);
+                items.add(item);
             }
         }
+    }
+
+    private ArrayList<LibraryItem> books(){
+        ArrayList<LibraryItem> books = new ArrayList<LibraryItem>();
+        for(LibraryItem item : items){
+            if(item instanceof Book){
+                books.add(item);
+            }
+        }
+        return books;
+    }
+
+    private ArrayList<LibraryItem> movies(){
+        ArrayList<LibraryItem> movies = new ArrayList<LibraryItem>();
+        for(LibraryItem item : items){
+            if(item instanceof Movie){
+                movies.add(item);
+            }
+        }
+        return movies;
     }
 }

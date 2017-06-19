@@ -23,7 +23,17 @@ public class LibraryTest {
         library = new Library();
         Book b1 = new Book("A Game of Thrones", "George R. R. Martin", 1996);
         Book b2 = new Book("The House of the Spirits", "Isabel Allende", 1982);
-        library.addBooks(b1, b2);
+        Movie m1 = new Movie(
+                "The Incredibles",
+                "Brad Bird",
+                "10",
+                2004);
+        Movie m2 = new Movie(
+                "The Matrix",
+                "The Wachowskis",
+                "10",
+                1999);
+        library.addItems(b1, b2, m1, m2);
     }
 
     @Test
@@ -31,12 +41,27 @@ public class LibraryTest {
         outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         System.setOut(printStream);
-        library.list();
+        library.listBooks();
         assertEquals(
                 "Here are the available books\n" +
                 "Title   |   Author  |   Year of publication\n" +
                 "A Game of Thrones | George R. R. Martin | 1996\n" +
                 "The House of the Spirits | Isabel Allende | 1982\n",
+                outputStream.toString()
+        );
+    }
+
+    @Test
+    public void canListMovies(){
+        outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        library.listMovies();
+        assertEquals(
+                "Here are the available movies\n" +
+                        "Title   |   Director   |   Rating   |   Year of publication\n" +
+                        "The Incredibles | Brad Bird | 10 | 2004\n" +
+                        "The Matrix | The Wachowskis | 10 | 1999\n",
                 outputStream.toString()
         );
     }
@@ -103,7 +128,7 @@ public class LibraryTest {
         in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         library.checkIn();
-        library.list();
+        library.listBooks();
         assertEquals(
                 "Please enter the title of the book\n" +
                 "Thank you! Enjoy the book\n" +

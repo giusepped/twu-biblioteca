@@ -30,17 +30,29 @@ public class BibliotecaApp {
         Library library = new Library();
         Book b1 = new Book("A Game of Thrones", "George R. R. Martin", 1996);
         Book b2 = new Book("The House of the Spirits", "Isabel Allende", 1982);
-        library.addBooks(b1, b2);
+        Movie m1 = new Movie(
+                "The Incredibles",
+                "Brad Bird",
+                "10",
+                2004);
+        Movie m2 = new Movie(
+                "The Matrix",
+                "The Wachowskis",
+                "10",
+                1999);
+        library.addItems(b1, b2, m1, m2);
         return library;
     }
 
     private MainMenu setUpMenu(Library library){
-        ListOption listOption = new ListOption();
+        ListBooksOption listBooksOption = new ListBooksOption();
+        ListMoviesOption listMoviesOption = new ListMoviesOption();
         CheckOutOption checkOutOption = new CheckOutOption();
         CheckInOption checkInOption = new CheckInOption();
         QuitOption quitOption = new QuitOption();
         ArrayList<MenuOption> options = new ArrayList<MenuOption>();
-        options.add(listOption);
+        options.add(listBooksOption);
+        options.add(listMoviesOption);
         options.add(checkOutOption);
         options.add(checkInOption);
         options.add(quitOption);

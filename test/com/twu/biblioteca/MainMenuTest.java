@@ -17,17 +17,17 @@ public class MainMenuTest {
 
     private ByteArrayOutputStream outputStream;
     private MainMenu menu;
-    private ListOption listOption;
+    private ListBooksOption listBooksOption;
     private Library library;
 
     @Before
     public void setUpMenu(){
         library = new Library();
         ArrayList<MenuOption> options = new ArrayList<MenuOption>();
-        listOption = mock(ListOption.class);
-        when(listOption.getCommand()).thenReturn("L");
-        when(listOption.name()).thenReturn("(L)ist books");
-        options.add(listOption);
+        listBooksOption = mock(ListBooksOption.class);
+        when(listBooksOption.getCommand()).thenReturn("L");
+        when(listBooksOption.name()).thenReturn("(L)ist books");
+        options.add(listBooksOption);
         menu = new MainMenu(library, options);
     }
 
@@ -38,7 +38,7 @@ public class MainMenuTest {
         System.setOut(printStream);
         menu.showOptions();
         assertEquals(
-                "Please choose an option (use the first letter):\n" +
+                "Please choose an option (use the letter in parenthesis):\n" +
                         "(L)ist books\n",
                 outputStream.toString()
         );
@@ -47,7 +47,7 @@ public class MainMenuTest {
     @Test
     public void canChooseOption(){
         menu.chooseOption("L");
-        verify(listOption, times(1)).run(library);
+        verify(listBooksOption, times(1)).run(library);
     }
 
     @Test
