@@ -7,12 +7,12 @@ public class ListBooksOption implements MenuOption{
 
     @Override
     public String name() {
-        return "(L)ist books";
+        return "List (B)ooks";
     }
 
     @Override
     public String getCommand() {
-        return "L";
+        return "B";
     }
 
     @Override

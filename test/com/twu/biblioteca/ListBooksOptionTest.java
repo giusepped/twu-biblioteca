@@ -20,7 +20,7 @@ public class ListBooksOptionTest {
     @Test
     public void canReturnName(){
         assertEquals(
-                "(L)ist books",
+                "List (B)ooks",
                 listBooksOption.name()
         );
     }
@@ -28,7 +28,7 @@ public class ListBooksOptionTest {
     @Test
     public void canReturnCommand(){
         assertEquals(
-                "L",
+                "B",
                 listBooksOption.getCommand()
         );
     }
