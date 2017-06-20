@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
@@ -23,12 +22,11 @@ public class MainMenuTest {
     @Before
     public void setUpMenu(){
         library = new Library();
-        ArrayList<MenuOption> options = new ArrayList<MenuOption>();
         listBooksOption = mock(ListBooksOption.class);
         when(listBooksOption.getCommand()).thenReturn("L");
         when(listBooksOption.name()).thenReturn("(L)ist books");
-        options.add(listBooksOption);
-        menu = new MainMenu(library, options);
+        menu = new MainMenu(library);
+        menu.addOptions(listBooksOption);
     }
 
     @Test

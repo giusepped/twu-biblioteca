@@ -10,9 +10,16 @@ public class MainMenu {
     private Library library;
     private ArrayList<MenuOption> options;
 
-    public MainMenu(Library library, ArrayList<MenuOption> options){
+    public MainMenu(Library library){
         this.library = library;
-        this.options = options;
+        this.options = new ArrayList<MenuOption>();
+    }
+
+
+    public void addOptions(MenuOption... optionsToAdd){
+        for(MenuOption o : optionsToAdd){
+            options.add(o);
+        }
     }
 
     public void showOptions(){

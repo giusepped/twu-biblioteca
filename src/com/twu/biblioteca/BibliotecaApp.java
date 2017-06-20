@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BibliotecaApp {
@@ -61,13 +60,10 @@ public class BibliotecaApp {
         CheckOutOption checkOutOption = new CheckOutOption();
         CheckInOption checkInOption = new CheckInOption();
         QuitOption quitOption = new QuitOption();
-        ArrayList<MenuOption> options = new ArrayList<MenuOption>();
-        options.add(listBooksOption);
-        options.add(listMoviesOption);
-        options.add(checkOutOption);
-        options.add(checkInOption);
-        options.add(quitOption);
-        return new MainMenu(library, options);
+        MainMenu mainMenu = new MainMenu(library);
+        mainMenu.addOptions(listBooksOption, listMoviesOption, checkOutOption, checkInOption, quitOption);
+        return mainMenu;
+
     }
 
     private UserManager setUpUserManager(){
