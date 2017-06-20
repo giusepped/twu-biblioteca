@@ -14,8 +14,19 @@ public class BibliotecaApp {
         WelcomeMessage message = new WelcomeMessage();
         Library library = setUpLibrary();
         MainMenu menu = setUpMenu(library);
+        UserManager userManager = setUpUserManager();
 
         message.printMessage();
+
+        String libraryNumber = getLibraryNumber();
+        String password = getPassword();
+
+        while(!userManager.logIn(libraryNumber, password)){
+            libraryNumber = getLibraryNumber();
+            password = getPassword();
+            userManager.logIn(libraryNumber, password);
+        }
+
 
         while(true){
             menu.showOptions();
@@ -57,5 +68,35 @@ public class BibliotecaApp {
         options.add(checkInOption);
         options.add(quitOption);
         return new MainMenu(library, options);
+    }
+
+    private UserManager setUpUserManager(){
+        User user1 = new User(
+                "123-4567",
+                "banana",
+                "giuseppe",
+                "giuseppe@banana.com",
+                "123456789");
+        User user2 = new User(
+                "789-4567",
+                "strawberry",
+                "daenerys",
+                "daenerys@targaryen.com",
+                "987654321");
+        UserManager userManager = new UserManager();
+        userManager.addUsers(user1, user2);
+        return userManager;
+    }
+
+    private String getLibraryNumber(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your library number: ");
+        return scanner.next();
+    }
+
+    private String getPassword(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your password: ");
+        return scanner.next();
     }
 }
