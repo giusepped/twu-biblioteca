@@ -73,19 +73,11 @@ public class Library {
     }
 
     private boolean isValidCheckOutRequest(String title){
-        ArrayList<String> titles = new ArrayList<String>();
-        for (LibraryItem item : items){
-            titles.add(item.getTitle());
-        }
-        return titles.contains(title);
+        return items.stream().anyMatch(book -> book.getTitle().equals(title));
     }
 
     private boolean isValidCheckInRequest(String title){
-        ArrayList<String> titles = new ArrayList<String>();
-        for (LibraryItem item : checkedOutItems){
-            titles.add(item.getTitle());
-        }
-        return titles.contains(title);
+        return checkedOutItems.stream().anyMatch(book -> book.getTitle().equals(title));
     }
 
     private void removeFromLibrary(String title) {
