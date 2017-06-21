@@ -30,7 +30,7 @@ public class MainMenu {
     }
 
     public void chooseOption(String userInput){
-        if(isValidOption(userInput)){
+        if(!isValidOption(userInput)){
             System.out.println("Invalid option!");
         }else{
             for(MenuOption option : options){
@@ -42,14 +42,8 @@ public class MainMenu {
     }
 
     private boolean isValidOption(String userInput){
-        return !validOptions().contains(userInput);
-    }
-
-    private ArrayList<String> validOptions(){
-        ArrayList<String> validOptions = new ArrayList<String>();
-        for(MenuOption option : options){
-            validOptions.add(option.getCommand());
-        }
-        return validOptions;
+        return options.stream().anyMatch(
+                option -> userInput.equals(option.getCommand())
+        );
     }
 }
