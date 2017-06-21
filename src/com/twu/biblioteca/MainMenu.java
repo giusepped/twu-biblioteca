@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * Created by giuseppedesantis on 16/06/2017.
@@ -24,20 +25,18 @@ public class MainMenu {
 
     public void showOptions(){
         System.out.println("Please choose an option (use the letter in parenthesis):");
-        for(MenuOption option : options){
-            System.out.println(option.name());
-        }
+        options.forEach(option -> System.out.println(option.name()));
     }
 
     public void chooseOption(String userInput){
         if(!isValidOption(userInput)){
             System.out.println("Invalid option!");
         }else{
-            for(MenuOption option : options){
-                if(userInput.equals(option.getCommand())){
-                    option.run(library);
-                }
-            }
+            MenuOption chosenOption = options.stream()
+                    .filter(option -> userInput.equals(option.getCommand()))
+                    .collect(Collectors.toList())
+                    .get(0);
+            chosenOption.run(library);
         }
     }
 
